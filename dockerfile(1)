@@ -1,0 +1,18 @@
+FROM nginx
+
+RUN apt-get update
+RUN apt-get install nginx -y
+
+<VirtualHost *:80>
+    DocumentRoot "/home/web/html"
+    ServerName SERV_NGINX
+
+    SetEnv APPLICATION_ENV "development"
+
+    <Directory "/home/web/html">
+        DirectoryIndex index.html
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
